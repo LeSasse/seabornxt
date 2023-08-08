@@ -1,6 +1,17 @@
 # seabornxt
 A few handy extension plots using seaborn API.
 
+To install:
+
+```
+git clone https://github.com/LeSasse/seabornxt.git
+cd seabornxt
+pip install .
+
+```
+
+Use example:
+
 ```
 import seaborn as sns
 from seabornxt import stripboxplot
@@ -22,4 +33,5 @@ if __name__ == "__main__":
 Results in:
 
 ![Alt text](examples/images/stripboxplot.svg)
-<img src="examples/images/stripboxplot.svg">
+
+At the moment, the legend only works properly with this example, will be generalised later on.
