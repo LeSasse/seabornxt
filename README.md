@@ -21,5 +21,5 @@ if __name__ == "__main__":
 
 Results in:
 
-![Alt text](examples/stripboxplot.svg)
-<img src="examples/stripboxplot.svg">
+![Alt text](examples/images/stripboxplot.svg)
+<img src="examples/images/stripboxplot.svg">
