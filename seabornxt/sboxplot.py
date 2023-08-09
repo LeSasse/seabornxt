@@ -2,37 +2,44 @@
 
 import seaborn as sns
 from matplotlib.legend_handler import HandlerTuple
-from IPython import embed
 
 
 def stripboxplot(
-    data=None, x=None, y=None, hue=None, strip_kwargs=None, box_kwargs=None
+    data=None,
+    x=None,
+    y=None,
+    hue=None,
+    strip_kwargs=None,
+    box_kwargs=None,
 ):
     if box_kwargs is None:
-        box_kwargs = {"boxprops": {"alpha": 0.5}}
+        box_kwargs = {"showfliers": False}
     if strip_kwargs is None:
-        strip_kwargs = {"jitter": True, "alpha": 0.8}
-
-    # set a nice default for box transparency if not explicitly set.
-    if "boxprops" not in box_kwargs:
-        box_kwargs["boxprops"] = {"alpha": 0.4}
+        strip_kwargs = {"jitter": True, "alpha": 0.4, "color": "k"}
 
     ax = sns.boxplot(data=data, x=x, y=y, hue=hue, dodge=True, **box_kwargs)
-    # handles = ax.get_legend_handles_labels()
-    # n_cats = len(handles)
+    if hue is not None:
+        n_cats_hue = len(data[hue].unique())
 
     sns.stripplot(
         data=data, x=x, y=y, hue=hue, dodge=True, ax=ax, **strip_kwargs
     )
 
+    if hue is None:
+        return ax
+
     handles, labels = ax.get_legend_handles_labels()
 
-    # TODO: Generalise fixing the legend for the appropriate number of
-    # categories
+    new_handles = []
+    new_labels = []
+    for i in range(n_cats_hue):
+        new_handles.append((handles[i], handles[i + n_cats_hue]))
+        new_labels.append(labels[i])
+
     ax.legend(
         title=ax.legend_.get_title().get_text(),
-        handles=[(handles[0], handles[2]), (handles[1], handles[3])],
-        labels=[labels[0], labels[1]],
+        handles=new_handles,
+        labels=new_labels,
         handlelength=4,
         handler_map={tuple: HandlerTuple(ndivide=None)},
     )
