@@ -3,6 +3,14 @@ A few handy extension plots using seaborn API.
 
 ## To install:
 
+You can install from PyPI as follows:
+
+``` shell
+pip install seabornxt
+```
+
+or you can install it from the GitHub repository:
+
 ```
 git clone https://github.com/LeSasse/seabornxt.git
 cd seabornxt
