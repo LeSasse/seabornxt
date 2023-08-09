@@ -75,6 +75,12 @@ if __name__ == "__main__":
 
 ![Alt text](examples/images/stripboxplot_colors.svg)
 
+The reason for this is that if no `strip_kwargs` are handed over, I set the color
+of the points to black for better visibility by default. But if one hands over 
+`strip_kwargs`, without explicitly specifying a color, the strip plot goes back
+to the seaborn default color/hue. I prefer black as a default as this is most
+useful in my use cases.
+
 ## Another dataset:
 
 ``` python
