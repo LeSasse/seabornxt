@@ -9,6 +9,7 @@ def stripboxplot(
     x=None,
     y=None,
     hue=None,
+    ax=None,
     strip_kwargs=None,
     box_kwargs=None,
 ):
@@ -17,7 +18,9 @@ def stripboxplot(
     if strip_kwargs is None:
         strip_kwargs = {"jitter": True, "alpha": 0.4, "color": "k"}
 
-    ax = sns.boxplot(data=data, x=x, y=y, hue=hue, dodge=True, **box_kwargs)
+    ax = sns.boxplot(
+        data=data, x=x, y=y, hue=hue, ax=ax, dodge=True, **box_kwargs
+    )
     if hue is not None:
         n_cats_hue = len(data[hue].unique())
 
